@@ -1,5 +1,22 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+var keychain = require('keychain');
 
 export default function handler(req, res) {
-  res.status(200).json({ name: 'John Doe' })
+    if (process.env.ENVIRONMENT === 'production') {
+        res.status(200).json({ 
+            environment: 'production',
+            test_var: process.env.TEST_VAR
+        })
+    }
+    if (process.env.ENVIRONMENT === 'development') {
+        keychain.getPassword(
+            { account: 'alans', service: 'alans--TEST--not-a-password'}, 
+            function(err, test_var) { 
+                res.status(200).json({ 
+                    environment: 'development',
+                    test_var: test_var,
+                })
+            }
+        )
+    }
 }
+

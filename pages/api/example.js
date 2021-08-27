@@ -2,9 +2,7 @@ const { exec } = require("child_process")
 
 export default function handler(req, res) {
 
-    const theEnvironment = {
-        environment: process.env.ENVIRONMENT
-    }
+    const theEnvironment = {}
 
     function setEnvironmentVariable(key, value) {
         theEnvironment[key] = value
@@ -18,7 +16,7 @@ export default function handler(req, res) {
         setEnvironmentVariable('key2', process.env.KEY2)
     }
 
-    if (process.env.ENVIRONMENT === 'development') {
+    else {
         exec(
             'security find-generic-password -w -a alans -s alans--TEST--not-a-password-1', 
             (error, stdout, stderr) => { setEnvironmentVariable('key1', stdout.trim()) }

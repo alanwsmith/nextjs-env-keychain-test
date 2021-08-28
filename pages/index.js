@@ -1,5 +1,5 @@
 export default function Home() {
   return (
-      <div>Home Page</div>
+      <div><a href="/api/example">Example</a></div>
   )
 }

@@ -5,7 +5,7 @@ export default function handler(req, res) {
     const config = process.env.CONFIG ? 
         eval(`new Object(${process.env.CONFIG})`) :
         eval(`new Object(${execSync(
-            'security find-generic-password -w -a USER -s CONFIG_NAME'
+            'security find-generic-password -w -a alans -s test-nextjs-config'
         ).toString().trim()})`)
         
     res.status(200).json({

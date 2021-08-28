@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 export default function Home() {
     return (
+        <>
         <div>
             <Link href="/api/example-1">
                 <a>Example 1</a>
@@ -19,5 +20,6 @@ This provides a way to do local development without
 storing passwords in plaintext files. 
         </p>
         <a href="https://github.com/alanwsmith/nextjs-env-keychain-test">Repo</a>
+        </>
     )
 }

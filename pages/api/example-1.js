@@ -2,15 +2,14 @@ const { execSync } = require("child_process")
 
 export default function handler(req, res) {
 
-    const password1 = process.env.ENVIRONMENT === 'production' ? 
-        process.env.PASSWORD_1 : 
+    const db_pass = process.env.DB_PASS ? process.env.DB_PASS : 
         execSync(
-            'security find-generic-password -w -a USER -s PASSWORD_NAME'
+            'security find-generic-password -w -a alans -s test-nextjs-db-pass'
         ).toString().trim()
 
     res.status(200).json( 
         { 
-            password1: password1
+            db_pass: db_pass
         }
     )
 

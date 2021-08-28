@@ -1,13 +1,11 @@
 Storing Next.js Env Vars In macOS Keychain Access
 =================================================
 
-This is an example showing how to pull credentails
-from macOS Keychain Access in a next.js app so you 
-don't have to store them in cleartext. 
+These examples show how to use the macOS Keychain
+App during local development to store environmental
+variables while switching to standard ones in production. 
+This provides a way to do local development without
+storing passwords in plaintext files. 
 
-The process uses a `.env.development` file as 
-a switch so Keychain Access is used locally and
-environmental variables stored on your host 
-(e.g. netlify) are used in produciton. 
 
 

@@ -1,37 +1,21 @@
-const { exec } = require("child_process")
+const { execSync } = require("child_process")
 
 export default function handler(req, res) {
 
-    const theEnvironment = {}
+    const password1 = process.env.ENVIRONMENT && process.env.ENVIRONMENT === 'production' ? 
+        process.env.PASSWORD_1 : 
+        execSync('security find-generic-password -w -a USERNAME -s PASSWORD1_NAME').toString().trim()
 
-    function setEnvironmentVariable(key, value) {
-        theEnvironment[key] = value
-        if (theEnvironment['key1'] && theEnvironment['key2']) {
-            doStuff()
+    const password2 = process.env.ENVIRONMENT && process.env.ENVIRONMENT === 'production' ? 
+        process.env.PASSWORD_2 : 
+        execSync('security find-generic-password -w -a USERNAME -s PASSWORD2_NAME').toString().trim()
+
+    res.status(200).json( 
+        { 
+            password1: password1,
+            password2: password2
         }
-    }
-
-    if (process.env.ENVIRONMENT === 'production') {
-        setEnvironmentVariable('key1', process.env.KEY1)
-        setEnvironmentVariable('key2', process.env.KEY2)
-    }
-
-    else {
-        exec(
-            'security find-generic-password -w -a alans -s alans--TEST--not-a-password-1', 
-            (error, stdout, stderr) => { setEnvironmentVariable('key1', stdout.trim()) }
-        )
-        exec(
-            'security find-generic-password -w -a alans -s alans--TEST--not-a-password-2', 
-            (error, stdout, stderr) => { setEnvironmentVariable('key2', stdout.trim()) }
-        )
-    }
-
-    function doStuff() {
-        res.status(200).json( 
-            theEnvironment
-        )
-    }
+    )
 
 }
 

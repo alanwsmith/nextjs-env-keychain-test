@@ -4,7 +4,9 @@ export default function handler(req, res) {
 
     const password1 = process.env.ENVIRONMENT === 'production' ? 
         process.env.PASSWORD_1 : 
-        execSync('security find-generic-password -w -a USERNAME -s PASSWORD1_NAME').toString().trim()
+        execSync(
+            'security find-generic-password -w -a alans -s alans--TEST--not-a-password-1'
+        ).toString().trim()
 
     res.status(200).json( 
         { 

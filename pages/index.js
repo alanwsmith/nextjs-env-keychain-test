@@ -1,5 +1,11 @@
+import Link from 'next/link'
+
 export default function Home() {
-  return (
-      <div><a href="/api/example">Example</a></div>
-  )
+    return (
+        <div>
+            <Link href="/api/example">
+                <a>Example</a>
+            </Link>
+        </div>
+    )
 }

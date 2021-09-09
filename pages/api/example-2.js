@@ -1,17 +1,19 @@
-const { execSync } = require("child_process")
+const { execSync } = require('child_process')
 
 export default function handler(req, res) {
+  const config = process.env.CONFIG
+    ? eval(`new Object(${process.env.CONFIG})`)
+    : eval(
+        `new Object(${execSync(
+          `security find-generic-password \
+              -w -a alans -s test-nextjs-config`
+        )
+          .toString()
+          .trim()})`
+      )
 
-    const config = process.env.CONFIG ? 
-        eval(`new Object(${process.env.CONFIG})`) :
-        eval(`new Object(${execSync(
-            'security find-generic-password -w -a alans -s test-nextjs-config'
-        ).toString().trim()})`)
-        
-    res.status(200).json({
-        db_user: config.db_user,
-        db_pass: config.db_pass
-    })
-
+  res.status(200).json({
+    db_user: config.db_user,
+    db_pass: config.db_pass,
+  })
 }
-

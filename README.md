@@ -1,11 +1,5 @@
-Storing Next.js Env Vars In macOS Keychain Access
-=================================================
+# Storing Next.js Env Vars In macOS Keychain Access
 
-These examples show how to use the macOS Keychain
-App during local development to store environmental
-variables while switching to standard ones in production. 
-This provides a way to do local development without
-storing passwords in plaintext files. 
+This is a check for the methodology listed in [this post](https://www.alanwsmith.com/storing-local-environmental-variables-securely-in-password-managers-instead-of-plaintext-env-files)
 
-
-
+It's deployed to Netlify [here](https://nextjs-env-keychain-test-alanwsmith.netlify.app)

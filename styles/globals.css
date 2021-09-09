@@ -1,13 +1,16 @@
 html,
 body {
+  background: #444;
+  color: #ccc;
   padding: 0;
-  margin: 0;
+  margin: 10px;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    max-width: 680px;
 }
 
 a {
-  color: inherit;
+  color: #78cc77;
   text-decoration: none;
 }
 
